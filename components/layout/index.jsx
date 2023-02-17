@@ -1,14 +1,8 @@
 import React from "react";
-import Sidebar from "../sidebar";
-import { LayoutWrap, ContentWrapper } from "./styled";
+import { LayoutWrap } from "./styled";
 
 const Layout = ({ children }) => {
-  return (
-    <LayoutWrap>
-      <Sidebar />
-      <ContentWrapper>{children}</ContentWrapper>
-    </LayoutWrap>
-  );
+  return <LayoutWrap>{children}</LayoutWrap>;
 };
 
 export default Layout;

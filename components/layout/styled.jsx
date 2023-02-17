@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContentWrapper = styled.main`
+export const MainWrap = styled.main`
   width: 100%;
   padding: 30px;
 `;

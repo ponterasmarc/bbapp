@@ -1,0 +1,106 @@
+import { Paper, PanelFlex, Table } from "@/components/utils/styled";
+
+const Dashboard = () => {
+  return (
+    <PanelFlex>
+      {/* <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper>
+      <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper>
+      <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper>
+      <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper>
+      <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper>
+      <Paper>
+        <Table>
+          <tr>
+            <th>id</th>
+            <th>aasdasd</th>
+            <th>asdasd</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+            <td>asd2146245</td>
+          </tr>
+        </Table>
+      </Paper> */}
+    </PanelFlex>
+  );
+};
+
+export default Dashboard;
