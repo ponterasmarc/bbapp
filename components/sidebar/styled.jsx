@@ -4,8 +4,7 @@ export const SidebarWrap = styled.div`
   min-height: 100vh;
   padding: 30px;
   background: ${({ theme }) => theme.colors.contentBg};
-  border-radius: 0 7px 7px 0;
-  box-shadow: ${({ theme }) => theme.boxShadow.paper};
+  border-right: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const Logo = styled.div`
@@ -31,12 +30,11 @@ export const Ul = styled.ul`
 
   li {
     a {
-      padding: 15px 25px;
+      padding: 10px;
       text-decoration: none;
       color: ${({ theme }) => theme.colors.text};
       display: flex;
       align-items: bottom;
-      border-radius: 7px;
 
       :hover {
         background-color: ${({ theme }) => theme.colors.hover};
@@ -46,7 +44,7 @@ export const Ul = styled.ul`
       }
     }
     .theme {
-      padding: 15px 25px;
+      padding: 15px 0;
       /* border-left: solid transparent 15px; */
       text-decoration: none;
       color: ${({ theme }) => theme.colors.text};
@@ -61,7 +59,6 @@ export const Ul = styled.ul`
 
     a.active {
       color: #fff;
-      border-radius: 7px 7px 0 0;
       background-color: ${({ theme }) => theme.colors.primary};
     }
   }
@@ -70,7 +67,6 @@ export const Ul = styled.ul`
 export const SubMenu = styled.ul`
   transition: all 0.5s linear;
   background-color: ${({ theme }) => theme.colors.subMenu};
-  border-radius: 0 0 7px 7px;
   li {
     a {
       padding: 7px 45px 7px 25px;

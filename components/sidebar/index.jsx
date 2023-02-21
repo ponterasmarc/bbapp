@@ -95,7 +95,6 @@ const Sidebar = ({ theme, children }) => {
         </li>
         <li>
           <div className="theme">
-            <span>Theme</span>
             <ThemeSwitch>{children}</ThemeSwitch>
           </div>
         </li>

@@ -1,14 +1,15 @@
 export const lightTheme = {
   colors: {
-    primary: "#2980b9",
+    primary: "#2962ff",
     secondary: "",
     error: "#d32f2f",
     warning: "#f57c00",
     success: "388e3c",
-    bodyBg: "#f2f2f2",
+    bodyBg: "#fff",
     btnText: "#fff",
     headingText: "#1d1d41",
     text: "#1d1d41b0",
+    border: "#2222221a",
     toggleBorder: "#FFF",
     background: "#2c3e50",
     link: "#27ae60",
@@ -25,20 +26,21 @@ export const lightTheme = {
 
 export const darkTheme = {
   colors: {
-    primary: "#3498db",
+    primary: "#2962ff",
     secondary: "",
     error: "#d32f2f",
     warning: "#f57c00",
-    success: "388e3c",
-    bodyBg: "#141332",
+    success: "#388e3c",
+    bodyBg: "#001624",
     btnText: "#fff",
     headingText: "#fff",
     text: "#ffffff9e",
+    border: "#ffffff1a",
     toggleBorder: "#2c3e50",
     background: "#fff",
     link: "#27ae60",
     hover: "#ffffff18",
-    contentBg: "#1d1d41",
+    contentBg: "#001624",
     subMenu: "#2980b926",
   },
   boxShadow: {
