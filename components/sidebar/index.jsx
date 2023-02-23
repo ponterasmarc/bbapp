@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Ul, SidebarWrap, Logo, SubMenu } from "./styled";
-import ThemeSwitch from "../utils/ThemeSwitch";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
 
-const Sidebar = ({ theme, children }) => {
+const Sidebar = () => {
   const [location, setLocation] = useState();
   const router = useRouter();
 
@@ -23,7 +22,7 @@ const Sidebar = ({ theme, children }) => {
   return (
     <SidebarWrap>
       <Logo>
-        <img src={theme === "light" ? logoLight : logoDark} alt="" />
+        <img src={logoLight} alt="" />
         <span>The Logo</span>
       </Logo>
       <Ul>
@@ -92,11 +91,17 @@ const Sidebar = ({ theme, children }) => {
             <SettingsOutlinedIcon />
             <span>Settings</span>
           </Link>
-        </li>
-        <li>
-          <div className="theme">
-            <ThemeSwitch>{children}</ThemeSwitch>
-          </div>
+          {location === "/admin/setting" ? (
+            <SubMenu>
+              <li>
+                <Link href="/admin/setting/role">
+                  <span>Role</span>
+                </Link>
+              </li>
+            </SubMenu>
+          ) : (
+            ""
+          )}
         </li>
       </Ul>
     </SidebarWrap>

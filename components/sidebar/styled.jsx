@@ -27,6 +27,7 @@ export const Logo = styled.div`
 
 export const Ul = styled.ul`
   padding: 0;
+  min-width: 200px;
 
   li {
     a {

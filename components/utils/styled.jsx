@@ -6,11 +6,18 @@ export const Paper = styled.div`
   border-radius: 7px;
   margin-bottom: 15px;
   margin-right: 15px;
-  box-shadow: ${({ theme }) => theme.boxShadow.paper};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  background-color: ${({ theme }) => theme.colors.bgSecond};
 `;
 export const PanelFlex = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+export const SectionTitle = styled.span`
+  display: block;
+  font-size: 22px;
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 15px;
 `;
 
 // -------------- BUTTONS ----------------
@@ -30,7 +37,7 @@ export const UpdateBtn = styled.button`
 
 export const SaveBtn = styled.button`
   color: ${({ theme }) => theme.colors.btnText};
-  background-color: ${({ theme }) => theme.colors.error};
+  background-color: ${({ theme }) => theme.colors.success};
 `;
 
 export const Table = styled.table`

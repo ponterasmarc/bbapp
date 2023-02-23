@@ -1,105 +1,14 @@
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+
+import AdminLayout from "@/components/layout/AdminLayout";
 import { Paper, PanelFlex, Table } from "@/components/utils/styled";
 
 const Dashboard = () => {
   return (
-    <PanelFlex>
-      {/* <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table>
-          <tr>
-            <th>id</th>
-            <th>aasdasd</th>
-            <th>asdasd</th>
-            <th>date</th>
-          </tr>
-          <tr>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-            <td>asd2146245</td>
-          </tr>
-        </Table>
-      </Paper> */}
-    </PanelFlex>
+    <AdminLayout>
+      <PanelFlex></PanelFlex>
+    </AdminLayout>
   );
 };
 

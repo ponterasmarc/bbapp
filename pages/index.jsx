@@ -1,7 +1,5 @@
-export default function Home() {
-  return (
-    <>
-      <h1> Homepage </h1>
-    </>
-  );
-}
+const Index = () => {
+  return <div>Index</div>;
+};
+
+export default Index;

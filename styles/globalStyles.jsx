@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.text};
     transition: all 0.50s linear;
     line-height: 1.5em; 
-    font-family: 'Body', sans-serif;
+    font-family: 'Body', sans-serif !important;
     font-size: 15px;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -22,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 700;
     color: ${({ theme }) => theme.colors.headingText};
     line-height: 1.5em;
+    margin-bottom: 15px;
   }
   h1{
     font-size: 50px;
@@ -47,8 +48,43 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 7px;
     padding: 8px 25px;
     border: none;
+    /* width: 100%; */
+    display: inline-block;
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
+
+    :hover{
+      box-shadow: ${({ theme }) => theme.boxShadow.paper};
+    }
   }
   a {
-    color: ${({ theme }) => theme.colors.link};
+    color: ${({ theme }) => theme.colors.primary};
   }
+
+  input, textarea{
+    background-color: ${({ theme }) => theme.colors.bodyBg} !important;
+    border-color: ${({ theme }) => theme.colors.border} !important;
+    color: ${({ theme }) => theme.colors.text} !important;
+
+    ::placeholder{
+      color: ${({ theme }) => theme.colors.placeholder} !important;
+    }
+  }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 15px;
+  }
+
+  td, th {
+    border: 1px solid ${({ theme }) => theme.colors.border};
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: ${({ theme }) => theme.colors.subMenu};
+  }
+  
 `;
