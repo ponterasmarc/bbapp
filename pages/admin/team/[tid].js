@@ -9,17 +9,17 @@ const Member = () => {
   const { tid } = router.query;
 
   console.log(tid);
-  //   const [disable, setDisable] = useState(false);
-  //   const dispatch = useDispatch();
-  //   const { loading, user, error } = useSelector((state) => state.getUser);
+  const [disable, setDisable] = useState(false);
+  const dispatch = useDispatch();
+  const { loading, user, error } = useSelector((state) => state.getUser);
 
-  //   useEffect(() => {
-  //     dispatch(getUser());
-  //   }, []);
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   return (
     <AdminLayout>
-      {/* <div className="mb-3 row">
+      <div className="mb-3 row">
         <label className="col-sm-2 col-form-label">First name</label>
         <div className="col-sm-10">
           <input
@@ -78,7 +78,7 @@ const Member = () => {
             value="email@example.com"
           />
         </div>
-      </div> */}
+      </div>
     </AdminLayout>
   );
 };
