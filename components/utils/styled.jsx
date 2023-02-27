@@ -40,6 +40,22 @@ export const SaveBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.success};
 `;
 
+export const LinkAsBtn = styled.a`
+  color: ${({ theme }) => theme.colors.btnText};
+  background-color: ${({ theme }) => theme.colors.primary};
+  text-decoration: none;
+  font-family: "Body", sans-serif;
+  text-transform: uppercase;
+  border-radius: 7px;
+  padding: 3px 15px;
+  border: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 7px;
+  font-family: "Title";
+  font-weight: 900;
+`;
+
 export const Table = styled.table`
   th {
     font-weight: 600;
@@ -47,4 +63,8 @@ export const Table = styled.table`
     text-align: left;
     padding: 7px;
   }
+`;
+
+export const Avatar = styled.img`
+  max-width: 50px;
 `;

@@ -46,12 +46,15 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Body', sans-serif;
     text-transform: uppercase;
     border-radius: 7px;
-    padding: 8px 25px;
+    padding: 3px 15px;
     border: none;
-    /* width: 100%; */
+    font-size: 12px;
     display: inline-block;
     background-color: ${({ theme }) => theme.colors.primary};
     color: #fff;
+    margin-right: 7px;
+    font-family: "Title";
+    font-weight: 900;
 
     :hover{
       box-shadow: ${({ theme }) => theme.boxShadow.paper};

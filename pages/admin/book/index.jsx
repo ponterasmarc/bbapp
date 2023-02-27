@@ -1,10 +1,11 @@
-const Book = () => {
+import AdminLayout from "@/components/layout/AdminLayout";
+
+const Books = () => {
   return (
-    <>
-      <h2>booktitle</h2>
-      <div>Book</div>{" "}
-    </>
+    <AdminLayout>
+      <div>Books</div>
+    </AdminLayout>
   );
 };
 
-export default Book;
+export default Books;

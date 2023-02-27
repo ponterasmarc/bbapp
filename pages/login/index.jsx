@@ -1,10 +1,13 @@
 import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LoginWrapper, LoginInner, SocialBtn, Divider } from "./styled";
 
 const Login = () => {
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   useEffect(() => {
     const securePage = async () => {
       const session = await getSession();
@@ -15,35 +18,45 @@ const Login = () => {
     securePage();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log(res);
+  };
+
   return (
     <LoginWrapper>
       <LoginInner>
         <h2>Login</h2>
-        <form action="">
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="name@example.com"
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="passowrd" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Enter password"
-            />
-          </div>
-          <button>Login</button>
-        </form>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            placeholder="name@example.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="passowrd" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="*************"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSubmit}>Login</button>
         <Divider>
           <hr />
           <span>or</span>

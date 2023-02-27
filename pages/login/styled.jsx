@@ -29,8 +29,7 @@ export const SocialBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.btnSec};
   margin-bottom: 15px;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  /* text-align: center;
-  justify-content: center; */
+  width: 100%;
 
   img {
     width: 100;

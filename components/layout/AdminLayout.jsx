@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Sidebar from "../sidebar";
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export const MainWrap = styled.main`
   width: 100%;
@@ -13,18 +14,11 @@ export const LayoutWrap = styled.div`
 `;
 
 const AdminLayout = ({ children }) => {
-  useEffect(() => {
-    const securePage = async () => {
-      const session = await getSession();
-
-      console.log(session);
-      if (!session) {
-        signIn();
-      }
-    };
-    securePage();
-  }, []);
-
+  const router = useRouter();
+  const session = useSession();
+  // if (session.status === "unauthenticated") {
+  //   router.push("/error/401");
+  // }
   return (
     <LayoutWrap>
       <Sidebar />
