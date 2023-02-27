@@ -1,10 +1,10 @@
 import AdminLayout from "@/components/layout/AdminLayout";
-import { getUser } from "@/database/controllers/userControllers";
+import { getUser } from "@/store/actions/userActions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
-const User = () => {
+const Member = () => {
   const router = useRouter();
   const { tid } = router.query;
 
@@ -83,4 +83,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Member;
