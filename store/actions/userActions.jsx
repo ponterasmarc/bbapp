@@ -6,7 +6,7 @@ import {
   GET_USER_FAILED,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
-} from "../constants/userContants";
+} from "../constants/userConstants";
 
 export const getUsers = () => async (dispatch) => {
   try {

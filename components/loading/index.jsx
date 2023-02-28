@@ -1,5 +1,5 @@
 const Loading = () => {
-  return <div>Please wait, were fetching your data.</div>;
+  return <div>Please wait, we're retrieving your data.</div>;
 };
 
 export default Loading;

@@ -1,7 +1,7 @@
-import User from "@/models/user";
+import User from "../models/userModel";
 
 // <--- GET ALL USERS --->
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.find({});
 
@@ -15,8 +15,8 @@ const getUsers = async (req, res) => {
   }
 };
 
-// <--- GET SINGLE USER --->
-const getUser = async (req, res) => {
+// <--- GET USER --->
+export const getUser = async (req, res) => {
   const { userId } = req.query;
   try {
     const user = await User.findById(userId);
@@ -27,12 +27,12 @@ const getUser = async (req, res) => {
 
     res.status(200).json(user);
   } catch (error) {
-    res.status(404).json({ error: "Error while fetching data." });
+    res.status(404).json({ error: "Error while fetching user." });
   }
 };
 
 // <--- CREAT USER --->
-const postUser = async (req, res) => {
+export const postUser = async (req, res) => {
   try {
     const user = req.body;
 
@@ -62,7 +62,7 @@ const postUser = async (req, res) => {
 };
 
 // <--- UPDATE USER --->
-const putUser = async (req, res) => {
+export const putUser = async (req, res) => {
   try {
     const user = req.body;
     const { userId } = req.query;
@@ -89,7 +89,7 @@ const putUser = async (req, res) => {
 };
 
 // <--- DELETE USER --->
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const { userId } = req.query;
 
@@ -108,4 +108,3 @@ const deleteUser = async (req, res) => {
     res.status(404).json({ error: "Error in deleting the user" });
   }
 };
-export { getUsers, postUser, putUser, getUser, deleteUser };

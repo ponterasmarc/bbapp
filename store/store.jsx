@@ -1,5 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  addImprintReducer,
+  deleteImprintReducer,
+  getImprintReducer,
+  getImprintsReducer,
+  putImprintReducer,
+} from "./reducers/imprintReducers";
+import {
   addUserReducer,
   deleteUserReducer,
   getUserReducer,
@@ -14,5 +21,10 @@ export const store = configureStore({
     addUser: addUserReducer,
     putUser: putUserReducer,
     deleteUser: deleteUserReducer,
+    getImprints: getImprintsReducer,
+    getImprint: getImprintReducer,
+    addImprint: addImprintReducer,
+    putImprint: putImprintReducer,
+    deleteImprint: deleteImprintReducer,
   },
 });

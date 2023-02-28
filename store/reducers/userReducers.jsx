@@ -19,7 +19,7 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_RESET,
   DELETE_USER_SUCCESS,
-} from "../constants/userContants";
+} from "../constants/userConstants";
 
 export const getUsersReducer = (state = {}, action) => {
   switch (action.type) {
