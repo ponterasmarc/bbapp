@@ -1,12 +1,12 @@
 import Task from "../models/taskModel";
 
-// <--- GET ALL TASKS --->
+// <--- GET ALL TASK --->
 export const getTasks = async (req, res) => {
   try {
-    const task = await Task.find({});
+    const tasks = await Task.find({});
 
-    if (!task) {
-      res.status(404).json({ error: "task not found" });
+    if (!tasks) {
+      res.status(404).json({ error: "Tasks not found" });
     }
 
     res.status(200).json(task);

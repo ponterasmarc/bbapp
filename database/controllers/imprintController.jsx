@@ -1,6 +1,6 @@
 import Imprint from "../models/imprintModel";
 
-// <--- GET ALL IMPRINTS --->
+// <--- GET ALL IMPRINT --->
 export const getImprints = async (req, res) => {
   try {
     const imprints = await Imprint.find({});

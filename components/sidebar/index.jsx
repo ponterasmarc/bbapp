@@ -7,6 +7,7 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
+import PersonIcon from "@mui/icons-material/Person";
 
 const Sidebar = () => {
   const [location, setLocation] = useState();
@@ -72,6 +73,15 @@ const Sidebar = () => {
           >
             <AssignmentOutlinedIcon />
             <span>Projects</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/user"
+            className={`${location === "/admin/user" ? "active" : ""}`}
+          >
+            <PersonIcon />
+            <span>User</span>
           </Link>
         </li>
         <li>

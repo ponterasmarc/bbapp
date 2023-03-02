@@ -2,15 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    maidenName: {
+    name: {
       type: String,
       required: true,
     },
@@ -46,6 +38,22 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
       required: true,
+    },
+    role: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+    },
+    isAdmin: {
+      type: Boolean,
+    },
+    team: {
+      isLeader: {
+        type: Boolean,
+      },
+      teamId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Team",
+      },
     },
   },
   {

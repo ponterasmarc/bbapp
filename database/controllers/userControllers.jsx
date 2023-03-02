@@ -1,6 +1,6 @@
 import User from "../models/userModel";
 
-// <--- GET ALL USERS --->
+// <--- GET ALL USER --->
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find({});
@@ -107,4 +107,16 @@ export const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(404).json({ error: "Error in deleting the user" });
   }
+};
+
+// <--- GET SIGN IN USER --->
+export const getSignedInUser = async (req, res) => {
+  const { email } = req.body;
+  const signedInUser = await User.findOne({ email });
+
+  if (signedInUser) {
+    res.status(200).res.json(signedInUser);
+  }
+
+  res.status(404).json({ error: "Error while fetching data." });
 };

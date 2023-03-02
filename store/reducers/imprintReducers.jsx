@@ -1,21 +1,21 @@
 import {
-  GET_IMPRINTS_FAILED,
+  GET_IMPRINTS_FAIL,
   GET_IMPRINTS_REQUEST,
   GET_IMPRINTS_RESET,
   GET_IMPRINTS_SUCCESS,
-  GET_IMPRINT_FAILED,
+  GET_IMPRINT_FAIL,
   GET_IMPRINT_REQUEST,
   GET_IMPRINT_RESET,
   GET_IMPRINT_SUCCESS,
-  ADD_IMPRINT_FAILED,
+  ADD_IMPRINT_FAIL,
   ADD_IMPRINT_REQUEST,
   ADD_IMPRINT_RESET,
   ADD_IMPRINT_SUCCESS,
-  PUT_IMPRINT_FAILED,
+  PUT_IMPRINT_FAIL,
   PUT_IMPRINT_REQUEST,
   PUT_IMPRINT_RESET,
   PUT_IMPRINT_SUCCESS,
-  DELETE_IMPRINT_FAILED,
+  DELETE_IMPRINT_FAIL,
   DELETE_IMPRINT_REQUEST,
   DELETE_IMPRINT_RESET,
   DELETE_IMPRINT_SUCCESS,
@@ -27,7 +27,7 @@ export const getImprintsReducer = (state = {}, action) => {
       return { loading: true };
     case GET_IMPRINTS_SUCCESS:
       return { loading: false, success: true, imprints: action.payload };
-    case GET_IMPRINTS_FAILED:
+    case GET_IMPRINTS_FAIL:
       return { loading: false, success: false, error: action.payload };
     case GET_IMPRINTS_RESET:
       return { loading: false, state: {} };
@@ -42,7 +42,7 @@ export const getImprintReducer = (state = {}, action) => {
       return { loading: true };
     case GET_IMPRINT_SUCCESS:
       return { loading: false, success: true, imprint: action.payload };
-    case GET_IMPRINT_FAILED:
+    case GET_IMPRINT_FAIL:
       return { loading: false, success: false, error: action.payload };
     case GET_IMPRINT_RESET:
       return { loading: false, state: {} };
@@ -57,7 +57,7 @@ export const addImprintReducer = (state = {}, action) => {
       return { loading: true };
     case ADD_IMPRINT_SUCCESS:
       return { loading: false, success: true, imprint: action.payload };
-    case ADD_IMPRINT_FAILED:
+    case ADD_IMPRINT_FAIL:
       return { loading: false, success: false, error: action.payload };
     case ADD_IMPRINT_RESET:
       return { loading: false, state: {} };
@@ -72,7 +72,7 @@ export const putImprintReducer = (state = {}, action) => {
       return { loading: true };
     case PUT_IMPRINT_SUCCESS:
       return { loading: false, success: true, imprint: action.payload };
-    case PUT_IMPRINT_FAILED:
+    case PUT_IMPRINT_FAIL:
       return { loading: false, success: false, error: action.payload };
     case PUT_IMPRINT_RESET:
       return { loading: false, state: {} };
@@ -87,7 +87,7 @@ export const deleteImprintReducer = (state = {}, action) => {
       return { loading: true };
     case DELETE_IMPRINT_SUCCESS:
       return { loading: false, success: true };
-    case DELETE_IMPRINT_FAILED:
+    case DELETE_IMPRINT_FAIL:
       return { loading: false, success: false, error: action.payload };
     case DELETE_IMPRINT_RESET:
       return { loading: false, state: {} };

@@ -63,8 +63,18 @@ export const Table = styled.table`
     text-align: left;
     padding: 7px;
   }
+  td {
+    vertical-align: middle;
+  }
 `;
 
 export const Avatar = styled.img`
   max-width: 50px;
+  display: block;
+  margin: auto;
+`;
+export const AvatarSmall = styled.img`
+  max-width: 25px;
+  display: block;
+  margin: auto;
 `;

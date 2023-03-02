@@ -1,4 +1,4 @@
-import { getUsers } from "@/store/actions/userActions";
+import { getTeams } from "@/store/actions/teamActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import AdminLayout from "@/components/layout/AdminLayout";
@@ -13,9 +13,9 @@ import ErrorComponent from "@/components/error";
 
 const Team = () => {
   const dispatch = useDispatch();
-  const { loading, users, error } = useSelector((state) => state.getUsers);
+  const { loading, teams, error } = useSelector((state) => state.getTeams);
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getTeams());
   }, []);
 
   return (
@@ -25,28 +25,22 @@ const Team = () => {
           <Loading />
         ) : error ? (
           <ErrorComponent message={"error message"} />
-        ) : users ? (
+        ) : teams ? (
           <>
-            <h2>Team</h2>
+            <h2>Teams</h2>
             <table>
               <thead>
                 <tr>
-                  <th>Avatar</th>
                   <th>Name</th>
-                  <th>Email</th>
+                  <th>description</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {users.map((user, key) => (
+                {teams.map((user, key) => (
                   <tr key={key}>
-                    <td>
-                      <Avatar src={user.image} alt="" />
-                    </td>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.email}</td>
+                    <td>{user.name}</td>
+                    <td>{user.description}</td>
                     <td>
                       <LinkAsBtn href={`team/${user._id}`}>View</LinkAsBtn>
                       <DeleteBtn>Delete</DeleteBtn>

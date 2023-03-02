@@ -84,6 +84,7 @@ export const GlobalStyles = createGlobalStyle`
     border: 1px solid ${({ theme }) => theme.colors.border};
     text-align: left;
     padding: 8px;
+    vertical-align: middle;
   }
 
   tr:nth-child(even) {

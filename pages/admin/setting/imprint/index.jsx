@@ -1,35 +1,31 @@
 import AdminLayout from "@/components/layout/AdminLayout";
+import Loading from "@/components/loading";
 import Error from "@/components/error";
-import {
-  PanelFlex,
-  SectionTitle,
-  Paper,
-  AvatarSmall,
-  LinkAsBtn,
-  DeleteBtn,
-  Table,
-} from "@/components/utils/styled";
 import { getImprints } from "@/store/actions/imprintActions";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Avatar, DeleteBtn, LinkAsBtn } from "@/components/utils/styled";
 
-const Setting = () => {
-  const router = useRouter();
+const Imprints = () => {
   const dispatch = useDispatch();
   const { loading, imprints, error } = useSelector(
     (state) => state.getImprints
   );
+  console.log(imprints);
   useEffect(() => {
     dispatch(getImprints());
   }, []);
 
-  const ImprintsSummary = () => {
-    return (
-      <Paper>
-        <SectionTitle>Imprints</SectionTitle>
-        {imprints ? (
-          <Table>
+  return (
+    <AdminLayout>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : imprints ? (
+        <>
+          <h2>Imprint</h2>
+          <table>
             <thead>
               <tr>
                 <th>Logo</th>
@@ -42,7 +38,7 @@ const Setting = () => {
               {imprints.map((imprint, key) => (
                 <tr key={key}>
                   <td>
-                    <AvatarSmall src={imprint.logo} alt="" />
+                    <Avatar src={imprint.logo} alt="" />
                   </td>
                   <td>{imprint.name}</td>
                   <td>{imprint.url}</td>
@@ -53,25 +49,13 @@ const Setting = () => {
                 </tr>
               ))}
             </tbody>
-          </Table>
-        ) : (
-          <Error />
-        )}
-        <button onClick={() => router.push("/admin/setting/role/add")}>
-          Add new imprint
-        </button>
-      </Paper>
-    );
-  };
-  return (
-    <>
-      <AdminLayout>
-        <PanelFlex>
-          <ImprintsSummary />
-        </PanelFlex>
-      </AdminLayout>
-    </>
+          </table>
+        </>
+      ) : (
+        ""
+      )}
+    </AdminLayout>
   );
 };
 
-export default Setting;
+export default Imprints;

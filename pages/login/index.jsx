@@ -1,9 +1,12 @@
+import { signedInUser } from "@/store/actions/userActions";
 import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { LoginWrapper, LoginInner, SocialBtn, Divider } from "./styled";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +15,7 @@ const Login = () => {
     const securePage = async () => {
       const session = await getSession();
       if (session) {
+        dispatch(signedInUser(session.user.email));
         router.push("/admin/dashboard");
       }
     };
