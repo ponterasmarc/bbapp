@@ -1,15 +1,15 @@
 import axios from "axios";
 import {
-  SET_SIGNIN_FAILED,
+  SET_SIGNIN_FAIL,
   SET_SIGNIN_REQUEST,
   SET_SIGNIN_SUCCESS,
-  GET_SIGNOUT_USER_FAILED,
+  GET_SIGNOUT_USER_FAIL,
   GET_SIGNOUT_USER_REQUEST,
   GET_SIGNOUT_USER_SUCCESS,
-  GET_USERS_FAILED,
+  GET_USERS_FAIL,
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
-  GET_USER_FAILED,
+  GET_USER_FAIL,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
 } from "../constants/userConstants";
@@ -27,10 +27,10 @@ export const signedInUser = (email) => async (dispatch) => {
     });
 
     // console.log(data);
-    localStorage.setItem("signedInUser", JSON.stringify(data));
+    // localStorage.setItem("signedInUser", JSON.stringify(data));
   } catch (error) {
     dispatch({
-      type: SET_SIGNIN_FAILED,
+      type: SET_SIGNIN_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -51,7 +51,7 @@ export const signOutUser = () => async (dispatch) => {
     // localStorage.setItem("loggedUser", JSON.stringify({ data: "data" }));
   } catch (error) {
     dispatch({
-      type: GET_SIGNOUT_USER_FAILED,
+      type: GET_SIGNOUT_USER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -75,7 +75,7 @@ export const getUsers = () => async (dispatch, getState) => {
     });
   } catch (error) {
     dispatch({
-      type: GET_USERS_FAILED,
+      type: GET_USERS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -96,7 +96,7 @@ export const getUser = (id) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: GET_USER_FAILED,
+      type: GET_USER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

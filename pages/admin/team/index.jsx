@@ -24,7 +24,7 @@ const Team = () => {
         {loading ? (
           <Loading />
         ) : error ? (
-          <ErrorComponent message={"error message"} />
+          <ErrorComponent message={error} />
         ) : teams ? (
           <>
             <h2>Teams</h2>

@@ -111,12 +111,14 @@ export const deleteUser = async (req, res) => {
 
 // <--- GET SIGN IN USER --->
 export const getSignedInUser = async (req, res) => {
-  const { email } = req.body;
-  const signedInUser = await User.findOne({ email });
+  try {
+    const { email } = req.body;
+    const signedInUser = await User.findOne({ email });
 
-  if (signedInUser) {
-    res.status(200).res.json(signedInUser);
+    if (signedInUser) {
+      res.status(200).json(signedInUser);
+    }
+  } catch (error) {
+    res.status(404).json({ message: "Error while fetching data." });
   }
-
-  res.status(404).json({ error: "Error while fetching data." });
 };

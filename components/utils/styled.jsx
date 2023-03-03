@@ -15,9 +15,11 @@ export const PanelFlex = styled.div`
 `;
 export const SectionTitle = styled.span`
   display: block;
-  font-size: 22px;
+  font-size: 15px;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 900;
 `;
 
 // -------------- BUTTONS ----------------
@@ -32,7 +34,7 @@ export const AddBtn = styled.button`
 
 export const UpdateBtn = styled.button`
   color: ${({ theme }) => theme.colors.btnText};
-  background-color: ${({ theme }) => theme.colors.error};
+  background-color: ${({ theme }) => theme.colors.warning};
 `;
 
 export const SaveBtn = styled.button`
@@ -77,4 +79,8 @@ export const AvatarSmall = styled.img`
   max-width: 25px;
   display: block;
   margin: auto;
+`;
+
+export const Empha = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
 `;

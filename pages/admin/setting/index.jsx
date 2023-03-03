@@ -66,6 +66,7 @@ const Setting = () => {
   return (
     <>
       <AdminLayout>
+        <h2>Settings</h2>
         <PanelFlex>
           <ImprintsSummary />
         </PanelFlex>
