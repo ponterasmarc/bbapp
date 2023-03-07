@@ -70,10 +70,10 @@ const Login = () => {
           <img src="/assets/images/google.png" alt="" />
           Login with Google
         </SocialBtn>
-        <SocialBtn onClick={() => signIn("github")}>
+        {/* <SocialBtn onClick={() => signIn("github")}>
           <img src="/assets/images/github.png" alt="" />
           Login with Github
-        </SocialBtn>
+        </SocialBtn> */}
       </LoginInner>
     </LoginWrapper>
   );

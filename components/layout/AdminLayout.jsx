@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const MainWrap = styled.main`
   width: 100%;
   padding: 30px;
+  position: relative;
 `;
 
 export const LayoutWrap = styled.div`

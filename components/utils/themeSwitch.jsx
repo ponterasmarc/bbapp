@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const ThemeButton = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 99;
 
   button {
     background-color: ${({ theme }) => theme.colors.bodyBg};

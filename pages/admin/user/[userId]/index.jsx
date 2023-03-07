@@ -1,19 +1,39 @@
 import AdminLayout from "@/components/layout/AdminLayout";
-import { getUser } from "@/store/actions/userActions";
+import { deleteUser, getUser, putUser } from "@/store/actions/userActions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { UpdateBtn } from "@/components/utils/styled";
+import {
+  AlertError,
+  AlertSuccess,
+  DeleteBtn,
+  UpdateBtn,
+} from "@/components/utils/styled";
 import Loading from "@/components/loading";
 import ErrorComponent from "@/components/error";
+import SuccessDeleteFull from "@/components/alert/SuccessDeleteFull";
 
 const User = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [disable, setDisable] = useState(true);
+  // const [btnDisable, setBtnDisable] = useState(false);
 
   const { userId } = router.query;
   const { loading, user, error } = useSelector((state) => state.getUser);
+
+  const {
+    loading: loadingPutUser,
+    success: successPutUser,
+    error: errorPutUser,
+  } = useSelector((state) => state.putUser);
+
+  const {
+    loading: loadingDeleteUser,
+    success: successDeleteUser,
+    error: errorDeleteUser,
+  } = useSelector((state) => state.deleteUser);
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -48,7 +68,10 @@ const User = () => {
       role,
       team,
     };
-    console.log(updateUser);
+    dispatch(putUser(userId, updateUser));
+  };
+  const deleteHandler = () => {
+    dispatch(deleteUser(userId));
   };
 
   useEffect(() => {
@@ -80,7 +103,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setName(e.target.value)}
-                value={name}
+                value={name ? name : ""}
               />
             </div>
           </div>
@@ -92,7 +115,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setAge(e.target.value)}
-                value={age}
+                value={age ? age : ""}
               />
             </div>
           </div>
@@ -104,7 +127,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setGender(e.target.value)}
-                value={gender}
+                value={gender ? gender : ""}
               />
             </div>
           </div>
@@ -116,7 +139,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                value={email ? email : ""}
               />
             </div>
           </div>
@@ -128,7 +151,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setPhone(e.target.value)}
-                value={phone}
+                value={phone ? phone : ""}
               />
             </div>
           </div>
@@ -140,7 +163,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setBirthDate(e.target.value)}
-                value={birthDate}
+                value={birthDate ? birthDate : ""}
               />
             </div>
           </div>
@@ -152,7 +175,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setRole(e.target.value)}
-                value={role}
+                value={role ? role : ""}
               />
             </div>
           </div>
@@ -164,7 +187,7 @@ const User = () => {
                 readOnly={disable}
                 className="form-control"
                 onChange={(e) => setTeam({ teamId: e.target.value })}
-                value={team.teamId}
+                value={team ? team.teamId : ""}
               />
             </div>
           </div>
@@ -172,7 +195,28 @@ const User = () => {
             <button onClick={toggleEdit}>Edit user</button>
           ) : (
             <>
-              <UpdateBtn onClick={updateHandler}>Update user</UpdateBtn>
+              {successPutUser ? (
+                <AlertSuccess>User updated successfully!</AlertSuccess>
+              ) : errorPutUser ? (
+                <AlertError>{error}</AlertError>
+              ) : errorDeleteUser ? (
+                <AlertError>{errorPutUser}</AlertError>
+              ) : successDeleteUser ? (
+                <SuccessDeleteFull
+                  message={"User deleted successfully!"}
+                  fallbackUrl={"/admin/user"}
+                />
+              ) : (
+                ""
+              )}
+
+              <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
+              <UpdateBtn
+                onClick={updateHandler}
+                disabled={loadingPutUser ? true : false}
+              >
+                {loadingPutUser ? "Processing ... " : "Update"}
+              </UpdateBtn>
             </>
           )}
         </>

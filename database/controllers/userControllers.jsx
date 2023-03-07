@@ -3,13 +3,31 @@ import User from "../models/userModel";
 // <--- GET ALL USER --->
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.find({});
+    var pageNo = parseInt(req.query.pageNo);
+    var size = parseInt(req.query.size);
+    var uid = req.query.uid;
+    var query = {};
+
+    if (pageNo <= 0 || !pageNo) {
+      pageNo = 1;
+    }
+
+    query.skip = size * (pageNo - 1);
+    query.limit = size;
+
+    //count entries
+    const totalaEntries = await User.count({ _id: { $ne: uid } });
+
+    const users = await User.find({ _id: { $ne: uid } }, {}, query);
 
     if (!users) {
       res.status(404).json({ error: "Users not found" });
     }
-
-    res.status(200).json(users);
+    const response = {
+      count: totalaEntries,
+      users,
+    };
+    res.status(200).json(response);
   } catch (error) {
     res.status(404).json({ error: "Error while fetching data." });
   }
@@ -74,6 +92,11 @@ export const putUser = async (req, res) => {
         function (err, updatedUser) {
           if (err) {
             res.status(400).json({ error: "Error in updating the user" });
+          } else if (!updatedUser) {
+            res.status(401).json({
+              error: "User not found.",
+              user: updatedUser,
+            });
           } else {
             res.status(200).json({
               message: "User updated successfully.",

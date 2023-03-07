@@ -1,6 +1,7 @@
 import ErrorComponent from "@/components/error";
 import AdminLayout from "@/components/layout/AdminLayout";
 import Loading from "@/components/loading";
+// import Pagination from "@/components/pagination";
 import {
   Avatar,
   DeleteBtn,
@@ -8,15 +9,43 @@ import {
   PanelFlex,
 } from "@/components/utils/styled";
 import { getUsers } from "@/store/actions/userActions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { loading, users, error } = useSelector((state) => state.getUsers);
+  const { loading, users, entries, error } = useSelector(
+    (state) => state.getUsers
+  );
+  const [pageNo, setPageNo] = useState();
+  const [size, setSize] = useState(5);
+
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getUsers(pageNo, size));
   }, []);
+
+  // Handles pages count
+  const handlePage = (number) => {
+    console.log(number);
+  };
+
+  //Generate number pages
+  const Pagination = () => {
+    let pageCount = entries / size;
+
+    let items = [];
+    for (let number = 1; number <= pageCount; number++) {
+      items.push(
+        <button key={number} onClick={() => handlePage(number)}>
+          {number}
+        </button>
+      );
+    }
+
+    return <div className="paginationWrap">{items}</div>;
+  };
+  // ------------- > END Generate number pages
+
   return (
     <AdminLayout>
       <PanelFlex>
@@ -52,6 +81,8 @@ const Users = () => {
                 ))}
               </tbody>
             </table>
+            {}
+            <Pagination />
           </>
         ) : (
           ""

@@ -22,6 +22,23 @@ export const SectionTitle = styled.span`
   font-weight: 900;
 `;
 
+// -------------- ALERTS ----------------
+export const AlertSuccess = styled.div`
+  color: ${({ theme }) => theme.colors.success};
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid ${({ theme }) => theme.colors.success};
+  margin-bottom: 15px;
+`;
+
+export const AlertError = styled.div`
+  color: ${({ theme }) => theme.colors.danger};
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid ${({ theme }) => theme.colors.danger};
+  margin-bottom: 15px;
+`;
+
 // -------------- BUTTONS ----------------
 export const DeleteBtn = styled.button`
   color: ${({ theme }) => theme.colors.btnText};
@@ -35,6 +52,12 @@ export const AddBtn = styled.button`
 export const UpdateBtn = styled.button`
   color: ${({ theme }) => theme.colors.btnText};
   background-color: ${({ theme }) => theme.colors.warning};
+
+  :disabled,
+  [disabled] {
+    background-color: ${({ theme }) => theme.colors.warningDisable};
+    color: ${({ theme }) => theme.colors.btnTextDisable};
+  }
 `;
 
 export const SaveBtn = styled.button`
