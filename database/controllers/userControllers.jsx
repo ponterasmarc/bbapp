@@ -18,7 +18,9 @@ export const getUsers = async (req, res) => {
     //count entries
     const totalaEntries = await User.count({ _id: { $ne: uid } });
 
-    const users = await User.find({ _id: { $ne: uid } }, {}, query);
+    const users = await User.find({ _id: { $ne: uid } }, {}, query).sort({
+      createdAt: "desc",
+    });
 
     if (!users) {
       res.status(404).json({ error: "Users not found" });

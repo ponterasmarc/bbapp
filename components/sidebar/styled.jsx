@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SidebarWrap = styled.div`
   min-height: 100vh;
   padding: 30px;
-  background: ${({ theme }) => theme.colors.contentBg};
+  background: ${({ theme }) => theme.colors.mainBg};
   border-right: 1px solid ${({ theme }) => theme.colors.border};
 `;
 

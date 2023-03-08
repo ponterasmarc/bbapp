@@ -27,6 +27,8 @@ export const signedInUser = (email) => async (dispatch) => {
     });
     const { data } = await axios.post(`/api/users/signedin/`, { email });
 
+    localStorage.setItem("signedUser", JSON.stringify(data));
+
     dispatch({
       type: SET_SIGNIN_SUCCESS,
       payload: data,
@@ -88,8 +90,11 @@ export const getUsers = (pageNo, size) => async (dispatch, getState) => {
       type: GET_USERS_REQUEST,
     });
 
+    var signedUser = JSON.parse(localStorage.getItem("signedUser"));
+    console.log(signedUser._id);
+
     const { data } = await axios.get(
-      `/api/users?pageNo=${pageNo}&size=${size}`
+      `/api/users?uid=${signedUser._id}&pageNo=${pageNo}&size=${size}`
     );
     dispatch({
       type: GET_USERS_SUCCESS,

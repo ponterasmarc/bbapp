@@ -19,13 +19,13 @@ export const LayoutWrap = styled.div`
 
 const AdminLayout = ({ children }) => {
   const router = useRouter();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const {
-  //   loading,
-  //   signedInUser: user,
-  //   error,
-  // } = useSelector((state) => state.signedInUser);
+  const {
+    // loading,
+    signedInUser: user,
+    // error,
+  } = useSelector((state) => state.signedInUser);
 
   useEffect(() => {
     const securePage = async () => {
@@ -33,13 +33,12 @@ const AdminLayout = ({ children }) => {
       if (!session) {
         router.push("/login");
       }
-
-      // if (!user) {
-      //   dispatch(signedInUser(session.user.email));
-      // }
+      if (!user) {
+        dispatch(signedInUser(session.user.email));
+      }
     };
     securePage();
-  }, []);
+  }, [user]);
 
   return (
     <LayoutWrap>

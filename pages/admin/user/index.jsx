@@ -6,6 +6,7 @@ import {
   Avatar,
   DeleteBtn,
   LinkAsBtn,
+  PageCountNav,
   PanelFlex,
 } from "@/components/utils/styled";
 import { getUsers } from "@/store/actions/userActions";
@@ -17,34 +18,42 @@ const Users = () => {
   const { loading, users, entries, error } = useSelector(
     (state) => state.getUsers
   );
-  const [pageNo, setPageNo] = useState();
+  const [pageNo, setPageNo] = useState(1);
   const [size, setSize] = useState(5);
 
   useEffect(() => {
     dispatch(getUsers(pageNo, size));
   }, []);
 
-  // Handles pages count
-  const handlePage = (number) => {
-    console.log(number);
-  };
-
-  //Generate number pages
+  //Paginations
   const Pagination = () => {
     let pageCount = entries / size;
 
-    let items = [];
-    for (let number = 1; number <= pageCount; number++) {
-      items.push(
-        <button key={number} onClick={() => handlePage(number)}>
-          {number}
+    const pagePrev = () => {
+      setPageNo(pageNo - 1);
+      dispatch(getUsers(pageNo - 1, size));
+    };
+    const pageNext = () => {
+      setPageNo(pageNo + 1);
+      dispatch(getUsers(pageNo + 1, size));
+    };
+    return (
+      <PageCountNav>
+        <button onClick={pagePrev} disabled={pageNo == 1 ? true : false}>
+          ◄
         </button>
-      );
-    }
-
-    return <div className="paginationWrap">{items}</div>;
+        <span>
+          {pageNo}/{pageCount}
+        </span>
+        <button
+          disabled={pageNo === pageCount ? true : false}
+          onClick={pageNext}
+        >
+          ►
+        </button>
+      </PageCountNav>
+    );
   };
-  // ------------- > END Generate number pages
 
   return (
     <AdminLayout>
@@ -81,7 +90,6 @@ const Users = () => {
                 ))}
               </tbody>
             </table>
-            {}
             <Pagination />
           </>
         ) : (

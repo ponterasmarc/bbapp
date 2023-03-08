@@ -8,20 +8,115 @@ import {
   AlertSuccess,
   DeleteBtn,
   UpdateBtn,
+  Paper,
+  PanelFlex,
+  SectionTitle,
 } from "@/components/utils/styled";
 import Loading from "@/components/loading";
 import ErrorComponent from "@/components/error";
 import SuccessDeleteFull from "@/components/alert/SuccessDeleteFull";
+import {
+  UserImg,
+  UserDetailsWrap,
+  UserView,
+  FieldWrap,
+  Label,
+  Data,
+  FormWrapper,
+  Form,
+} from "./styled";
 
 const User = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [disable, setDisable] = useState(true);
-  // const [btnDisable, setBtnDisable] = useState(false);
+  const [enableEdit, setEnableEdit] = useState(false);
 
   const { userId } = router.query;
   const { loading, user, error } = useSelector((state) => state.getUser);
 
+  useEffect(() => {
+    if (userId && !user) {
+      dispatch(getUser(userId));
+    }
+  }, [userId, user]);
+
+  const toggleEdit = () => {
+    enableEdit == false ? setEnableEdit(true) : setEnableEdit(false);
+  };
+
+  return (
+    <AdminLayout>
+      <UserView>
+        {loading ? (
+          <Loading />
+        ) : user ? (
+          <>
+            <UserDetailsWrap>
+              <UserImg src={user.image} />
+              <FieldWrap>
+                <Label>Name: </Label>
+                <Data>{user.name}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>Position:</Label>
+                <Data>{user.role}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>birthdate:</Label>
+                <Data>{user.birthDate}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>Age:</Label>
+                <Data>{user.age}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>Gender:</Label>
+                <Data>{user.gender}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>Email:</Label>
+                <Data>{user.email}</Data>
+              </FieldWrap>
+              <FieldWrap>
+                <Label>Phone:</Label>
+                <Data>{user.phone}</Data>
+              </FieldWrap>
+              <button onClick={toggleEdit}>Quick edit</button>
+              <button onClick={toggleEdit}>Edit user</button>
+            </UserDetailsWrap>
+          </>
+        ) : error ? (
+          <ErrorComponent />
+        ) : (
+          ""
+        )}
+        {enableEdit ? (
+          <>
+            <FormWrapper>
+              <FormEdit user={user} />
+              <button onClick={toggleEdit}>Cancel</button>
+            </FormWrapper>
+          </>
+        ) : (
+          ""
+        )}
+        <PanelFlex>
+          <Paper>
+            <SectionTitle>Bucket</SectionTitle>
+          </Paper>
+        </PanelFlex>
+      </UserView>
+      <Paper>
+        <SectionTitle>One Time Approve</SectionTitle>
+      </Paper>
+    </AdminLayout>
+  );
+};
+
+export default User;
+
+export const FormEdit = ({ user }) => {
+  const userId = user._id;
   const {
     loading: loadingPutUser,
     success: successPutUser,
@@ -47,15 +142,23 @@ const User = () => {
     teamId: "",
   }); //isLeader , teamId
 
-  useEffect(() => {
-    if (userId && !user) {
-      dispatch(getUser(userId));
-    }
-  }, [userId, user]);
+  if (user && !email) {
+    setName(user.name);
+    setAge(user.age);
+    setGender(user.gender);
+    setEmail(user.email);
+    setPhone(user.phone);
+    setBirthDate(user.birthDate);
+    setImage(user.image);
+    setRole(user.role);
+    setIsAdmin(user.isAdmin);
+    setTeam(user.team);
+  }
 
   const toggleEdit = () => {
     setDisable(false);
   };
+
   const updateHandler = () => {
     const updateUser = {
       name,
@@ -74,33 +177,16 @@ const User = () => {
     dispatch(deleteUser(userId));
   };
 
-  useEffect(() => {
-    if (user && !email) {
-      setName(user.name);
-      setAge(user.age);
-      setGender(user.gender);
-      setEmail(user.email);
-      setPhone(user.phone);
-      setBirthDate(user.birthDate);
-      setImage(user.image);
-      setRole(user.role);
-      setIsAdmin(user.isAdmin);
-      setTeam(user.team);
-    }
-  }, [user, email]);
   return (
-    <AdminLayout>
-      {loading ? (
-        <Loading />
-      ) : user ? (
-        <>
-          <img src={image} alt="" />
+    <>
+      <Form>
+        <Paper>
+          <UserImg src={image} />
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Name</label>
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setName(e.target.value)}
                 value={name ? name : ""}
@@ -112,7 +198,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setAge(e.target.value)}
                 value={age ? age : ""}
@@ -124,7 +209,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setGender(e.target.value)}
                 value={gender ? gender : ""}
@@ -136,7 +220,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email ? email : ""}
@@ -148,7 +231,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone ? phone : ""}
@@ -160,7 +242,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="date"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setBirthDate(e.target.value)}
                 value={birthDate ? birthDate : ""}
@@ -172,7 +253,6 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setRole(e.target.value)}
                 value={role ? role : ""}
@@ -184,49 +264,16 @@ const User = () => {
             <div className="col-sm-10">
               <input
                 type="text"
-                readOnly={disable}
                 className="form-control"
                 onChange={(e) => setTeam({ teamId: e.target.value })}
                 value={team ? team.teamId : ""}
               />
             </div>
           </div>
-          {disable ? (
-            <button onClick={toggleEdit}>Edit user</button>
-          ) : (
-            <>
-              {successPutUser ? (
-                <AlertSuccess>User updated successfully!</AlertSuccess>
-              ) : errorPutUser ? (
-                <AlertError>{error}</AlertError>
-              ) : errorDeleteUser ? (
-                <AlertError>{errorPutUser}</AlertError>
-              ) : successDeleteUser ? (
-                <SuccessDeleteFull
-                  message={"User deleted successfully!"}
-                  fallbackUrl={"/admin/user"}
-                />
-              ) : (
-                ""
-              )}
-
-              <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
-              <UpdateBtn
-                onClick={updateHandler}
-                disabled={loadingPutUser ? true : false}
-              >
-                {loadingPutUser ? "Processing ... " : "Update"}
-              </UpdateBtn>
-            </>
-          )}
-        </>
-      ) : error ? (
-        <ErrorComponent />
-      ) : (
-        ""
-      )}
-    </AdminLayout>
+          <DeleteBtn>Delete</DeleteBtn>
+          <UpdateBtn>Update</UpdateBtn>
+        </Paper>
+      </Form>
+    </>
   );
 };
-
-export default User;

@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const Paper = styled.div`
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.contentBg};
+  background-color: ${({ theme }) => theme.colors.mainBg};
   border-radius: 7px;
   margin-bottom: 15px;
   margin-right: 15px;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  background-color: ${({ theme }) => theme.colors.bgSecond};
 `;
 export const PanelFlex = styled.div`
   display: flex;
@@ -106,4 +105,13 @@ export const AvatarSmall = styled.img`
 
 export const Empha = styled.span`
   color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const PageCountNav = styled.div`
+  button {
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.primary};
+    display: inline-block;
+    margin: 0;
+  }
 `;
