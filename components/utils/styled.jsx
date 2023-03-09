@@ -31,10 +31,10 @@ export const AlertSuccess = styled.div`
 `;
 
 export const AlertError = styled.div`
-  color: ${({ theme }) => theme.colors.danger};
+  color: ${({ theme }) => theme.colors.error};
   padding: 15px;
   border-radius: 7px;
-  border: 1px solid ${({ theme }) => theme.colors.danger};
+  border: 1px solid ${({ theme }) => theme.colors.error};
   margin-bottom: 15px;
 `;
 
@@ -57,6 +57,11 @@ export const UpdateBtn = styled.button`
     background-color: ${({ theme }) => theme.colors.warningDisable};
     color: ${({ theme }) => theme.colors.btnTextDisable};
   }
+`;
+
+export const FlexBtnSB = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const SaveBtn = styled.button`

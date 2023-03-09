@@ -18,10 +18,7 @@ export const getUsers = async (req, res) => {
     //count entries
     const totalaEntries = await User.count({ _id: { $ne: uid } });
 
-    const users = await User.find({ _id: { $ne: uid } }, {}, query).sort({
-      createdAt: "desc",
-    });
-
+    const users = await User.find({ _id: { $ne: uid } }, {}, query);
     if (!users) {
       res.status(404).json({ error: "Users not found" });
     }
@@ -39,18 +36,18 @@ export const getUsers = async (req, res) => {
 export const getUser = async (req, res) => {
   const { userId } = req.query;
   try {
-    const user = await User.findById(userId);
-
+    const user = await User.findById(userId).populate("team role");
     if (!user) {
-      res.status(404).json({ error: "User not found" });
+      res.status(404).json({ error: "User not found." });
+    } else {
+      res.status(201).json(user);
     }
-
-    res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.status(404).json({ error: "Error while fetching user." });
   }
 };
-
+``;
 // <--- CREAT USER --->
 export const postUser = async (req, res) => {
   try {

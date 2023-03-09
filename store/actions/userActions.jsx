@@ -91,7 +91,6 @@ export const getUsers = (pageNo, size) => async (dispatch, getState) => {
     });
 
     var signedUser = JSON.parse(localStorage.getItem("signedUser"));
-    console.log(signedUser._id);
 
     const { data } = await axios.get(
       `/api/users?uid=${signedUser._id}&pageNo=${pageNo}&size=${size}`

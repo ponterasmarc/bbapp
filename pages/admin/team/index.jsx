@@ -32,7 +32,8 @@ const Team = () => {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>description</th>
+                  <th>Team Leader</th>
+                  <th>Members Count</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -40,7 +41,8 @@ const Team = () => {
                 {teams.map((user, key) => (
                   <tr key={key}>
                     <td>{user.name}</td>
-                    <td>{user.description}</td>
+                    <td></td>
+                    <td></td>
                     <td>
                       <LinkAsBtn href={`team/${user._id}`}>View</LinkAsBtn>
                       <DeleteBtn>Delete</DeleteBtn>

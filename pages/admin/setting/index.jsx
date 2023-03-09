@@ -13,6 +13,7 @@ import { getImprints } from "@/store/actions/imprintActions";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getRoles } from "@/store/actions/roleActions";
 
 const Setting = () => {
   const router = useRouter();
@@ -20,8 +21,14 @@ const Setting = () => {
   const { loading, imprints, error } = useSelector(
     (state) => state.getImprints
   );
+  const {
+    loading: loadingRoles,
+    roles,
+    error: errorRoles,
+  } = useSelector((state) => state.getRoles);
   useEffect(() => {
     dispatch(getImprints());
+    dispatch(getRoles());
   }, []);
 
   const ImprintsSummary = () => {
@@ -58,7 +65,7 @@ const Setting = () => {
           <Error />
         )}
         <button onClick={() => router.push("/admin/setting/role/add")}>
-          Add new imprint
+          Create imprint
         </button>
       </Paper>
     );
@@ -68,26 +75,20 @@ const Setting = () => {
     return (
       <Paper>
         <SectionTitle>Roles</SectionTitle>
-        {imprints ? (
+        {roles ? (
           <Table>
             <thead>
               <tr>
-                <th>Logo</th>
                 <th>Name</th>
-                <th>Url</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {imprints.map((imprint, key) => (
+              {roles.map((role, key) => (
                 <tr key={key}>
+                  <td>{role.name}</td>
                   <td>
-                    <AvatarSmall src={imprint.logo} alt="" />
-                  </td>
-                  <td>{imprint.name}</td>
-                  <td>{imprint.url}</td>
-                  <td>
-                    <LinkAsBtn href={`setting/${imprint._id}`}>View</LinkAsBtn>
+                    <LinkAsBtn href={`setting/${role._id}`}>View</LinkAsBtn>
                     <DeleteBtn>Delete</DeleteBtn>
                   </td>
                 </tr>
@@ -98,7 +99,7 @@ const Setting = () => {
           <Error />
         )}
         <button onClick={() => router.push("/admin/setting/role/add")}>
-          Add new imprint
+          Create role
         </button>
       </Paper>
     );

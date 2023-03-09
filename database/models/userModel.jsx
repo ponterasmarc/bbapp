@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Team from "./teamModel";
+import Role from "./roleModel";
 
 const userSchema = new mongoose.Schema(
   {
@@ -46,14 +48,13 @@ const userSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
     },
+    isLeader: {
+      type: Boolean,
+      default: false,
+    },
     team: {
-      isLeader: {
-        type: Boolean,
-      },
-      teamId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Team",
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Team",
     },
   },
   {

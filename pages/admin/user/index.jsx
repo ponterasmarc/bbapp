@@ -1,23 +1,26 @@
 import ErrorComponent from "@/components/error";
 import AdminLayout from "@/components/layout/AdminLayout";
 import Loading from "@/components/loading";
-// import Pagination from "@/components/pagination";
 import {
-  Avatar,
+  AvatarSmall,
   DeleteBtn,
-  LinkAsBtn,
   PageCountNav,
   PanelFlex,
 } from "@/components/utils/styled";
 import { getUsers } from "@/store/actions/userActions";
+import { GET_USER_RESET } from "@/store/constants/userConstants";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FlexBtnSB } from "@/components/utils/styled";
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { loading, users, entries, error } = useSelector(
+  const router = useRouter();
+  const { loading, users, count, error } = useSelector(
     (state) => state.getUsers
   );
+
   const [pageNo, setPageNo] = useState(1);
   const [size, setSize] = useState(5);
 
@@ -25,9 +28,9 @@ const Users = () => {
     dispatch(getUsers(pageNo, size));
   }, []);
 
-  //Paginations
+  //Pagination
   const Pagination = () => {
-    let pageCount = entries / size;
+    let pageCount = Math.ceil(count / size);
 
     const pagePrev = () => {
       setPageNo(pageNo - 1);
@@ -57,45 +60,55 @@ const Users = () => {
 
   return (
     <AdminLayout>
-      <PanelFlex>
-        {loading ? (
-          <Loading />
-        ) : error ? (
-          <ErrorComponent message={error} />
-        ) : users ? (
-          <>
-            <h2>Users</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>email</th>
-                  <th>Action</th>
+      <h2>Users</h2>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <ErrorComponent message={error} />
+      ) : users ? (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, key) => (
+                <tr key={key}>
+                  <td>
+                    <AvatarSmall src={user.image} />
+                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        router.push(`user/${user._id}`);
+                        dispatch({
+                          type: GET_USER_RESET,
+                        });
+                      }}
+                    >
+                      View
+                    </button>
+                    <DeleteBtn>Delete</DeleteBtn>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {users.map((user, key) => (
-                  <tr key={key}>
-                    <td>
-                      <Avatar src={user.image} />
-                    </td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <LinkAsBtn href={`user/${user._id}`}>View</LinkAsBtn>
-                      <DeleteBtn>Delete</DeleteBtn>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <Pagination />
-          </>
-        ) : (
-          ""
-        )}
-      </PanelFlex>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ) : (
+        "There was no data available to retrieve."
+      )}
+      <FlexBtnSB>
+        <button>Create User</button>
+        <Pagination />
+      </FlexBtnSB>
     </AdminLayout>
   );
 };

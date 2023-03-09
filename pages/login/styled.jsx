@@ -14,6 +14,7 @@ export const LoginInner = styled.div`
   max-width: 600px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: ${({ theme }) => theme.boxShadow.paper};
+  background-color: ${({ theme }) => theme.colors.mainBg};
 
   h1,
   h2 {

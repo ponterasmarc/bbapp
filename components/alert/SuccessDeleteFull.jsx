@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { LinkAsBtn } from "../utils/styled";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -26,12 +26,25 @@ const AlertWrapper = styled.div`
   color: ${({ theme }) => theme.colors.success};
 `;
 
-const SuccessDeleteFull = ({ message, fallbackUrl }) => {
+const SuccessDeleteFull = ({ message, fallbackUrl, reset }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <AlertWrapper>
         <div>{message}</div>
-        <LinkAsBtn href={fallbackUrl}>Go back</LinkAsBtn>
+        <button
+          onClick={() => {
+            router.push(fallbackUrl);
+            if (reset) {
+              dipatch({
+                type: reset,
+              });
+            }
+          }}
+        >
+          Go back
+        </button>
       </AlertWrapper>
     </Wrapper>
   );

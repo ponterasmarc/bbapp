@@ -1,12 +1,18 @@
 import { Empha } from "@/components/utils/styled";
+import { signOut } from "next-auth/react";
 
 const NavBar = ({ user }) => {
-  console.log(user);
   return (
     <>
-      <h5>
-        Hi <Empha>{user ? user.name : ""}</Empha>!
-      </h5>
+      Hi <Empha>{user ? user.name : ""}</Empha>!
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          signOut();
+        }}
+      >
+        Sign out
+      </button>
     </>
   );
 };

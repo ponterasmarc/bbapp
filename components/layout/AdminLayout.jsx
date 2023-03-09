@@ -20,6 +20,7 @@ export const LayoutWrap = styled.div`
 const AdminLayout = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  var session = "";
 
   const {
     // loading,
@@ -29,22 +30,25 @@ const AdminLayout = ({ children }) => {
 
   useEffect(() => {
     const securePage = async () => {
-      const session = await getSession();
+      session = await getSession();
       if (!session) {
         router.push("/login");
       }
-      if (!user) {
-        dispatch(signedInUser(session.user.email));
-      }
     };
     securePage();
+  }, []);
+
+  useEffect(() => {
+    if (!user && session) {
+      dispatch(signedInUser(session.user.email));
+    }
   }, [user]);
 
   return (
     <LayoutWrap>
       <Sidebar />
       <MainWrap>
-        {/* <NavBar user={user} /> */}
+        <NavBar user={user ? user : ""} />
         {children}
       </MainWrap>
     </LayoutWrap>

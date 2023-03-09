@@ -72,7 +72,7 @@ export const getUsersReducer = (state = {}, action) => {
         loading: false,
         success: true,
         users: action.payload.users,
-        entries: action.payload.count,
+        count: action.payload.count,
       };
     case GET_USERS_FAIL:
       return { loading: false, success: false, error: action.payload };

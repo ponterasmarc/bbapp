@@ -3,13 +3,30 @@ import Book from "../models/bookModel";
 // <--- GET ALL BOOK --->
 export const getBooks = async (req, res) => {
   try {
-    const books = await Book.find({});
+    var pageNo = parseInt(req.query.pageNo);
+    var size = parseInt(req.query.size);
+    var uid = req.query.uid;
+    var query = {};
+
+    if (pageNo <= 0 || !pageNo) {
+      pageNo = 1;
+    }
+
+    query.skip = size * (pageNo - 1);
+    query.limit = size;
+
+    //count entries
+    const count = await Book.count({ _id: { $ne: uid } });
+
+    const books = await Book.find({ _id: { $ne: uid } }, {}, query).populate(
+      "imprint author"
+    );
 
     if (!books) {
       res.status(404).json({ error: "Books not found" });
     }
-
-    res.status(200).json(books);
+    const response = { books, count };
+    res.status(200).json(response);
   } catch (error) {
     res.status(404).json({ error: "Error while fetching books." });
   }

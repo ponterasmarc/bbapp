@@ -64,7 +64,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.primary};
   }
 
-  input, textarea{
+  input, textarea, select{
     background-color: ${({ theme }) => theme.colors.bodyBg} !important;
     border-color: ${({ theme }) => theme.colors.border} !important;
     color: ${({ theme }) => theme.colors.text} !important;

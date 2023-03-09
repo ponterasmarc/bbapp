@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Author from "./authorModel";
+import Imprint from "./imprintModel";
 
 const bookSchema = new mongoose.Schema(
   {

@@ -4,12 +4,10 @@ import Task from "../models/taskModel";
 export const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find({});
-
     if (!tasks) {
       res.status(404).json({ error: "Tasks not found" });
     }
-
-    res.status(200).json(task);
+    res.status(200).json(tasks);
   } catch (error) {
     res.status(404).json({ error: "Error while fetching data." });
   }
