@@ -43,7 +43,9 @@ const User = () => {
           <>
             <UserDetailsWrap>
               <FlexDiv>
-                <UserImg src={user.image} />
+                <Label>
+                  <UserImg src={user.image} />
+                </Label>
                 <Col>
                   <UserName>{user.name ? user.name : "None"}</UserName>
                   <UserPosition>

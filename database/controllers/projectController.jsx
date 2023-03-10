@@ -14,7 +14,6 @@ export const getProjects = async (req, res) => {
 
     query.skip = size * (pageNo - 1);
     query.limit = size;
-
     //count entries
     const count = await Project.count({ _id: { $ne: uid } });
 

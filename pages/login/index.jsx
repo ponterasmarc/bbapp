@@ -16,7 +16,8 @@ const Login = () => {
     const securePage = async () => {
       const session = await getSession();
       if (session) {
-        dispatch(signedInUser(session.user.email));
+        localStorage.setItem("signedEmail", session.user.email);
+        dispatch(signedInUser());
         router.push("/admin/dashboard");
       }
     };

@@ -70,7 +70,6 @@ const Users = () => {
           <table>
             <thead>
               <tr>
-                <th></th>
                 <th>Name</th>
                 <th>email</th>
                 <th>Action</th>
@@ -81,8 +80,8 @@ const Users = () => {
                 <tr key={key}>
                   <td>
                     <AvatarSmall src={user.image} />
+                    {user.name}
                   </td>
-                  <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
                     <button

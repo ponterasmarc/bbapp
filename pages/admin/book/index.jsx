@@ -78,6 +78,7 @@ const Books = () => {
                 <tr key={key}>
                   <td>
                     <AvatarSmall src={book.imprint.logo} />
+                    {book.imprint.name}
                   </td>
                   <td>{book.title}</td>
                   <td>{book.author.fullName}</td>

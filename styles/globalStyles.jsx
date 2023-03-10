@@ -10,8 +10,8 @@ export const GlobalStyles = createGlobalStyle`
     src: url('/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
   }
   body{
-    background: ${({ theme }) => theme.colors.bodyBg};
-    color: ${({ theme }) => theme.colors.text};
+    background: ${({ theme }) => theme.colors.secondaryBg};
+    color: ${({ theme }) => theme.colors.secondaryText};
     transition: all 0.50s linear;
     line-height: 1.5em; 
     font-family: 'Body', sans-serif !important;
@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Title', sans-serif;
     font-weight: 700;
-    color: ${({ theme }) => theme.colors.headingText};
+    color: ${({ theme }) => theme.colors.primaryText};
     line-height: 1.5em;
     margin-bottom: 15px;
   }
@@ -65,9 +65,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input, textarea, select{
-    background-color: ${({ theme }) => theme.colors.bodyBg} !important;
-    border-color: ${({ theme }) => theme.colors.border} !important;
-    color: ${({ theme }) => theme.colors.text} !important;
+    background-color: ${({ theme }) => theme.colors.secondaryBg} !important;
+    border-color: ${({ theme }) => theme.colors.defaultBorder} !important;
+    color: ${({ theme }) => theme.colors.secondaryText} !important;
 
     ::placeholder{
       color: ${({ theme }) => theme.colors.placeholder} !important;
@@ -81,10 +81,19 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   td, th {
-    border: 1px solid ${({ theme }) => theme.colors.border};
+    border: 1px solid ${({ theme }) => theme.colors.defaultBorder};
     text-align: left;
     padding: 8px;
     vertical-align: middle;
+  }
+  th{
+    font-weight: 900;
+    font-family: "Title";
+    text-transform: capitalize;
+  }
+
+  td{
+    color: ${({ theme }) => theme.colors.primaryText}
   }
 
   tr:nth-child(even) {

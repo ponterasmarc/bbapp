@@ -1,10 +1,16 @@
 import AdminLayout from "@/components/layout/AdminLayout";
-import { DeleteBtn, FlexBtnSB, PageCountNav } from "@/components/utils/styled";
+import {
+  AvatarSmall,
+  DeleteBtn,
+  FlexBtnSB,
+  PageCountNav,
+} from "@/components/utils/styled";
 import { getProjects } from "@/store/actions/projectActions";
 import { GET_PROJECT_RESET } from "@/store/constants/projectConstans";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "@/components/loading";
+import ErrorComponent from "@/components/error";
 
 const Projects = () => {
   const dispatch = useDispatch();
@@ -62,6 +68,7 @@ const Projects = () => {
           <table>
             <thead>
               <tr>
+                <th>Ticket Number</th>
                 <th>Task</th>
                 <th>Timeline</th>
                 <th>Book</th>
@@ -73,10 +80,14 @@ const Projects = () => {
             <tbody>
               {projects.map((project, key) => (
                 <tr key={key}>
+                  <td>{project._id}</td>
                   <td>{project.task.name}</td>
                   <td>{project.task.timeline}</td>
                   <td>{project.book.title}</td>
-                  <td>{project.assignee.name}</td>
+                  <td>
+                    <AvatarSmall src={project.assignee.image} />
+                    {project.assignee.name}
+                  </td>
                   <td>{project.status}</td>
                   <td>
                     <button

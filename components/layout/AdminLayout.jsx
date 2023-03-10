@@ -48,7 +48,7 @@ const AdminLayout = ({ children }) => {
     <LayoutWrap>
       <Sidebar />
       <MainWrap>
-        <NavBar user={user ? user : ""} />
+        {/* <NavBar user={user ? user : ""} /> */}
         {children}
       </MainWrap>
     </LayoutWrap>

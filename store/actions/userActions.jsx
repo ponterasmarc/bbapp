@@ -20,8 +20,10 @@ import {
   DELETE_USER_FAIL,
 } from "../constants/userConstants";
 
-export const signedInUser = (email) => async (dispatch) => {
+export const signedInUser = () => async (dispatch) => {
   try {
+    var email = localStorage.getItem("signedEmail");
+
     dispatch({
       type: SET_SIGNIN_REQUEST,
     });

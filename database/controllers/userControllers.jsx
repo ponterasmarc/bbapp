@@ -135,7 +135,7 @@ export const deleteUser = async (req, res) => {
 export const getSignedInUser = async (req, res) => {
   try {
     const { email } = req.body;
-    const signedInUser = await User.findOne({ email });
+    const signedInUser = await User.findOne({ email }).populate("role");
 
     if (signedInUser) {
       res.status(200).json(signedInUser);

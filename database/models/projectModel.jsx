@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import Task from "./taskModel";
 import User from "./userModel";
-import Book from "./taskModel";
-import Author from "./authorModel";
+import Book from "./bookModel";
 
 const projectSchema = new mongoose.Schema(
   {
@@ -20,6 +19,9 @@ const projectSchema = new mongoose.Schema(
     },
     status: {
       type: String,
+    },
+    oneTimeApprove: {
+      type: Boolean,
     },
     notes: {
       type: String,

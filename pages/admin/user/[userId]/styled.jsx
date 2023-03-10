@@ -3,18 +3,19 @@ import styled from "styled-components";
 export const FlexDiv = styled.div`
   display: flex;
   width: 100%;
+  padding-bottom: 15px;
 `;
 export const Col = styled.div`
   width: 100%;
-  padding: 15px;
+  display: flex;
+  flex-flow: column;
+  justify-content: end;
 `;
 
 export const UserImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  margin: 0 0 15px 0;
   border-radius: 7px;
   display: block;
 `;
@@ -44,11 +45,10 @@ export const Form = styled.form`
 
 export const UserName = styled.span`
   display: block;
-  font-size: 22px;
+  font-size: 18px;
   font-family: "Title";
   font-weight: 900;
-  margin-bottom: 15px;
-  color: ${({ theme }) => theme.colors.primary}; ;
+  color: ${({ theme }) => theme.colors.primaryText}; ;
 `;
 export const UserPosition = styled.span`
   display: block;

@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const Paper = styled.div`
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.mainBg};
+  background-color: ${({ theme }) => theme.colors.primaryBg};
   border-radius: 7px;
   margin-bottom: 15px;
   margin-right: 15px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 export const PanelFlex = styled.div`
   display: flex;
@@ -17,8 +16,7 @@ export const SectionTitle = styled.span`
   font-size: 15px;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: 15px;
-  text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 // -------------- ALERTS ----------------
@@ -104,8 +102,7 @@ export const Avatar = styled.img`
 `;
 export const AvatarSmall = styled.img`
   max-width: 25px;
-  display: block;
-  margin: auto;
+  margin-right: 15px;
 `;
 
 export const Empha = styled.span`

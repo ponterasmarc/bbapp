@@ -1,21 +1,60 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { Ul, SidebarWrap, Logo, SubMenu } from "./styled";
+import {
+  Ul,
+  SidebarWrap,
+  Logo,
+  SubMenu,
+  UserWrap,
+  UserImage,
+  UserName,
+  UserPosition,
+  SignOut,
+} from "./styled";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
+
 import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
+import Groups2Icon from "@mui/icons-material/Groups2";
+
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import PersonIcon from "@mui/icons-material/Person";
+
+import { useDispatch, useSelector } from "react-redux";
+import { signedInUser } from "@/store/actions/userActions";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Sidebar = () => {
   const [location, setLocation] = useState();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const {
+    // loading,
+    signedInUser: user,
+    // error,
+  } = useSelector((state) => state.signedInUser);
+  console.log(user);
 
   useEffect(() => {
     setLocation(router.pathname);
   }, [router]);
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(signedInUser());
+    }
+  }, [user]);
 
   const logoLight = "/assets/images/logo-prim.png";
   const logoDark = "/assets/images/logo-alter.png";
@@ -24,15 +63,27 @@ const Sidebar = () => {
     <SidebarWrap>
       <Logo>
         <img src={logoLight} alt="" />
-        <span>The Logo</span>
       </Logo>
+      <UserWrap>
+        <UserImage
+          className={!user ? "placeholder" : ""}
+          src={user ? user.image : ""}
+        />
+        <UserName>{user ? user.name : ""}</UserName>
+        <UserPosition>{user ? user.role.name : ""}</UserPosition>
+      </UserWrap>
       <Ul>
         <li>
           <Link
             href="/admin/dashboard"
             className={`${location === "/admin/dashboard" ? "active" : ""}`}
           >
-            <DashboardOutlinedIcon />
+            {location === "/admin/dashboard" ? (
+              <DashboardIcon />
+            ) : (
+              <DashboardOutlinedIcon />
+            )}
+
             <span>Dashboard</span>
           </Link>
         </li>
@@ -41,37 +92,25 @@ const Sidebar = () => {
             href="/admin/book"
             className={`${location === "/admin/book" ? "active" : ""}`}
           >
-            <AutoStoriesOutlinedIcon />
+            {location === "/admin/book" ? (
+              <AutoStoriesIcon />
+            ) : (
+              <AutoStoriesOutlinedIcon />
+            )}
+
             <span>Books</span>
           </Link>
-          {/* {location === "/admin/book" ? (
-            <SubMenu>
-              <li>
-                <Link href="/admin/">
-                  <span>Add new</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin/">
-                  <span>By author</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin/">
-                  <span>Add</span>
-                </Link>
-              </li>
-            </SubMenu>
-          ) : (
-            ""
-          )} */}
         </li>
         <li>
           <Link
             href="/admin/project"
             className={`${location === "/admin/project" ? "active" : ""}`}
           >
-            <AssignmentOutlinedIcon />
+            {location === "/admin/project" ? (
+              <AssignmentIcon />
+            ) : (
+              <AssignmentOutlinedIcon />
+            )}
             <span>Projects</span>
           </Link>
         </li>
@@ -80,7 +119,12 @@ const Sidebar = () => {
             href="/admin/user"
             className={`${location === "/admin/user" ? "active" : ""}`}
           >
-            <PersonIcon />
+            {location === "/admin/user" ? (
+              <PersonIcon />
+            ) : (
+              <PersonOutlinedIcon />
+            )}
+
             <span>User</span>
           </Link>
         </li>
@@ -89,7 +133,12 @@ const Sidebar = () => {
             href="/admin/team"
             className={`${location === "/admin/team" ? "active" : ""}`}
           >
-            <Groups2OutlinedIcon />
+            {location === "/admin/team" ? (
+              <Groups2Icon />
+            ) : (
+              <Groups2OutlinedIcon />
+            )}
+
             <span>Team</span>
           </Link>
         </li>
@@ -98,7 +147,12 @@ const Sidebar = () => {
             href="/admin/setting"
             className={`${location === "/admin/setting" ? "active" : ""}`}
           >
-            <SettingsOutlinedIcon />
+            {location === "/admin/setting" ? (
+              <SettingsIcon />
+            ) : (
+              <SettingsOutlinedIcon />
+            )}
+
             <span>Settings</span>
           </Link>
           {location === "/admin/setting" ? (
@@ -107,6 +161,9 @@ const Sidebar = () => {
                 <Link href="/admin/setting/role">
                   <span>Role</span>
                 </Link>
+                <Link href="/admin/setting/role">
+                  <span>Account Setting</span>
+                </Link>
               </li>
             </SubMenu>
           ) : (
@@ -114,6 +171,9 @@ const Sidebar = () => {
           )}
         </li>
       </Ul>
+      <SignOut onClick={() => signOut()}>
+        <LogoutIcon /> Sign out
+      </SignOut>
     </SidebarWrap>
   );
 };

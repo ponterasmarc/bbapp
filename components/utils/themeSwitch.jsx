@@ -10,7 +10,6 @@ const ThemeButton = styled.div`
   button {
     background-color: ${({ theme }) => theme.colors.bodyBg};
     border-radius: 0;
-    border: 1px solid ${({ theme }) => theme.colors.border};
     color: ${({ theme }) => theme.colors.text};
     display: flex;
     align-items: center;
