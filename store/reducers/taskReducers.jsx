@@ -19,7 +19,7 @@ import {
   DELETE_TASK_REQUEST,
   DELETE_TASK_RESET,
   DELETE_TASK_SUCCESS,
-} from "../constants/TaskConstans";
+} from "../constants/taskConstans";
 
 export const getTasksReducer = (state = {}, action) => {
   switch (action.type) {

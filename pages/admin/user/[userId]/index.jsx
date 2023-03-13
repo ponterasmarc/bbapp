@@ -91,17 +91,21 @@ const User = () => {
         ) : (
           "None"
         )}
-        <PanelFlex>
-          <Paper>
-            <SectionTitle>Bucket</SectionTitle>
-            <SampleTable />
-          </Paper>
-        </PanelFlex>
+        <Paper>
+          <SectionTitle>Bucket</SectionTitle>
+          <SampleTable />
+        </Paper>
       </UserView>
-      <Paper>
-        <SectionTitle>One Time Approve</SectionTitle>
-        <SampleTable />
-      </Paper>
+      <PanelFlex>
+        <Paper>
+          <SectionTitle>Completed Tasks</SectionTitle>
+          <SampleTable />
+        </Paper>
+        <Paper>
+          <SectionTitle>One Time Approve</SectionTitle>
+          <SampleTable />
+        </Paper>
+      </PanelFlex>
     </AdminLayout>
   );
 };

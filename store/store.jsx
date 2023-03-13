@@ -52,6 +52,7 @@ import {
 import {
   addUserReducer,
   deleteUserReducer,
+  getAssigneesReducer,
   getUserReducer,
   getUsersByTeamReducer,
   getUsersReducer,
@@ -70,6 +71,7 @@ export const store = configureStore({
     addUser: addUserReducer,
     putUser: putUserReducer,
     deleteUser: deleteUserReducer,
+    getAssignees: getAssigneesReducer,
 
     //Imprint Reducers
     getImprints: getImprintsReducer,

@@ -18,6 +18,9 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
+  GET_ASSIGNEES_REQUEST,
+  GET_ASSIGNEES_SUCCESS,
+  GET_ASSIGNEES_FAIL,
 } from "../constants/userConstants";
 
 export const signedInUser = () => async (dispatch) => {
@@ -166,6 +169,32 @@ export const deleteUser = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getAssignees = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: GET_ASSIGNEES_REQUEST,
+    });
+
+    var signedUser = JSON.parse(localStorage.getItem("signedUser"));
+
+    const { data } = await axios.get(
+      `/api/users/assignees?uid=${signedUser._id}&teamId=${signedUser.team}`
+    );
+    dispatch({
+      type: GET_ASSIGNEES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ASSIGNEES_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

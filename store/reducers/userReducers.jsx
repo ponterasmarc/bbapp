@@ -31,6 +31,10 @@ import {
   GET_USERS_BY_TEAM_SUCCESS,
   GET_USERS_BY_TEAM_FAIL,
   GET_USERS_BY_TEAM_RESET,
+  GET_ASSIGNEES_REQUEST,
+  GET_ASSIGNEES_SUCCESS,
+  GET_ASSIGNEES_FAIL,
+  GET_ASSIGNEES_RESET,
 } from "../constants/userConstants";
 
 export const signedInUserReducer = (state = {}, action) => {
@@ -137,6 +141,25 @@ export const deleteUserReducer = (state = {}, action) => {
     case DELETE_USER_FAIL:
       return { loading: false, success: false, error: action.payload };
     case DELETE_USER_RESET:
+      return { loading: false, state: {} };
+    default:
+      return state;
+  }
+};
+
+export const getAssigneesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_ASSIGNEES_REQUEST:
+      return { loading: true };
+    case GET_ASSIGNEES_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        assignees: action.payload,
+      };
+    case GET_ASSIGNEES_FAIL:
+      return { loading: false, success: false, error: action.payload };
+    case GET_ASSIGNEES_RESET:
       return { loading: false, state: {} };
     default:
       return state;

@@ -144,3 +144,25 @@ export const getSignedInUser = async (req, res) => {
     res.status(404).json({ message: "Error while fetching data." });
   }
 };
+
+// <--- GET ASSIGNEES --->
+export const getAssignees = async (req, res) => {
+  try {
+    var uid = req.query.uid;
+    var teamId = req.query.teamId;
+
+    const assingees = await User.find({
+      $and: [{ _id: { $ne: uid } }, { team: { $eq: teamId } }],
+    }).populate({
+      path: "role",
+      populate: { path: "task" },
+    });
+
+    if (!assingees) {
+      res.status(404).json({ error: "Assigness not found" });
+    }
+    res.status(200).json(assingees);
+  } catch (error) {
+    res.status(404).json({ error: "Error while fetching data." });
+  }
+};

@@ -11,9 +11,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "@/components/loading";
 import ErrorComponent from "@/components/error";
+import { useRouter } from "next/router";
 
 const Projects = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { loading, projects, error, count } = useSelector(
     (state) => state.getProjects
@@ -112,7 +114,9 @@ const Projects = () => {
       )}
 
       <FlexBtnSB>
-        <button>Create Book</button>
+        <button onClick={() => router.push("project/add")}>
+          Create Project
+        </button>
         <Pagination />
       </FlexBtnSB>
     </AdminLayout>

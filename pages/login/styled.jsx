@@ -12,9 +12,8 @@ export const LoginInner = styled.div`
   border-radius: 7px;
   width: 100%;
   max-width: 600px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: ${({ theme }) => theme.boxShadow.paper};
-  background-color: ${({ theme }) => theme.colors.mainBg};
+  background-color: ${({ theme }) => theme.colors.primaryBg};
 
   h1,
   h2 {
@@ -25,11 +24,9 @@ export const LoginInner = styled.div`
 export const SocialBtn = styled.button`
   display: flex;
   align-items: center;
-  background-color: transparent;
-  color: ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.colors.btnSec};
+  color: ${({ theme }) => theme.colors.secondaryText};
+  background-color: ${({ theme }) => theme.colors.secondaryBg};
   margin-bottom: 15px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
   width: 100%;
 
   img {

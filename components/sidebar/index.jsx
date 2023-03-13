@@ -44,7 +44,6 @@ const Sidebar = () => {
     signedInUser: user,
     // error,
   } = useSelector((state) => state.signedInUser);
-  console.log(user);
 
   useEffect(() => {
     setLocation(router.pathname);
