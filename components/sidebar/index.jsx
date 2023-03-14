@@ -55,13 +55,12 @@ const Sidebar = () => {
     }
   }, [user]);
 
-  const logoLight = "/assets/images/logo-prim.png";
-  const logoDark = "/assets/images/logo-alter.png";
+  const logo = "/assets/images/logo-prim.png";
 
   return (
     <SidebarWrap>
       <Logo>
-        <img src={logoLight} alt="" />
+        <img src={logo} alt="" />
       </Logo>
       <UserWrap>
         <UserImage

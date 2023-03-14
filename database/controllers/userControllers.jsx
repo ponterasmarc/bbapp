@@ -3,6 +3,7 @@ import User from "../models/userModel";
 // <--- GET ALL USER --->
 export const getUsers = async (req, res) => {
   try {
+    var search = req.query.search;
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
     var uid = req.query.uid;
@@ -15,10 +16,23 @@ export const getUsers = async (req, res) => {
     query.skip = size * (pageNo - 1);
     query.limit = size;
 
-    //count entries
-    const totalaEntries = await User.count({ _id: { $ne: uid } });
+    const regex = new RegExp(search, "i"); // i for case insensitive
 
-    const users = await User.find({ _id: { $ne: uid } }, {}, query);
+    //count entries
+    const totalaEntries = await User.count({
+      _id: { $ne: uid },
+      $or: [{ name: { $regex: regex } }, { email: { $regex: regex } }],
+    });
+
+    const users = await User.find(
+      {
+        _id: { $ne: uid },
+        $or: [{ name: { $regex: regex } }, { email: { $regex: regex } }],
+      },
+      {},
+      query
+    );
+
     if (!users) {
       res.status(404).json({ error: "Users not found" });
     }
@@ -153,10 +167,11 @@ export const getAssignees = async (req, res) => {
 
     const assingees = await User.find({
       $and: [{ _id: { $ne: uid } }, { team: { $eq: teamId } }],
-    }).populate({
-      path: "role",
-      populate: { path: "task" },
     });
+    // .populate({
+    //   path: "role",
+    //   populate: { path: "task" },
+    // });
 
     if (!assingees) {
       res.status(404).json({ error: "Assigness not found" });

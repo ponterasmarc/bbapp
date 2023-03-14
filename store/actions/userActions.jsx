@@ -89,31 +89,32 @@ export const signOutUser = () => async (dispatch) => {
     });
   }
 };
-export const getUsers = (pageNo, size) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: GET_USERS_REQUEST,
-    });
+export const getUsers =
+  (pageNo, size, search) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: GET_USERS_REQUEST,
+      });
 
-    var signedUser = JSON.parse(localStorage.getItem("signedUser"));
+      var signedUser = JSON.parse(localStorage.getItem("signedUser"));
 
-    const { data } = await axios.get(
-      `/api/users?uid=${signedUser._id}&pageNo=${pageNo}&size=${size}`
-    );
-    dispatch({
-      type: GET_USERS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_USERS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      const { data } = await axios.get(
+        `/api/users?uid=${signedUser._id}&pageNo=${pageNo}&size=${size}&search=${search}`
+      );
+      dispatch({
+        type: GET_USERS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_USERS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getUser = (id) => async (dispatch) => {
   try {

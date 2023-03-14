@@ -22,6 +22,7 @@ const projectSchema = new mongoose.Schema(
     },
     oneTimeApprove: {
       type: Boolean,
+      default: false,
     },
     duration: {
       type: Number,

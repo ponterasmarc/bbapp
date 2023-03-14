@@ -14,29 +14,30 @@ import {
   DELETE_BOOK_FAIL,
 } from "../constants/bookConstans";
 
-export const getBooks = (pageNo, size) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: GET_BOOKS_REQUEST,
-    });
+export const getBooks =
+  (search, pageNo, size) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: GET_BOOKS_REQUEST,
+      });
 
-    const { data } = await axios.get(
-      `/api/books?pageNo=${pageNo}&size=${size}`
-    );
-    dispatch({
-      type: GET_BOOKS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_BOOKS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      const { data } = await axios.get(
+        `/api/books?search=${search}&pageNo=${pageNo}&size=${size}`
+      );
+      dispatch({
+        type: GET_BOOKS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_BOOKS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getBook = (id) => async (dispatch) => {
   try {

@@ -5,7 +5,7 @@ import {
   AvatarSmall,
   DeleteBtn,
   PageCountNav,
-  PanelFlex,
+  Paper,
 } from "@/components/utils/styled";
 import { getUsers } from "@/store/actions/userActions";
 import { GET_USER_RESET } from "@/store/constants/userConstants";
@@ -23,10 +23,16 @@ const Users = () => {
 
   const [pageNo, setPageNo] = useState(1);
   const [size, setSize] = useState(5);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(getUsers(pageNo, size));
+    dispatch(getUsers(pageNo, size, search));
   }, []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(getUsers(pageNo, size, search));
+  };
 
   //Pagination
   const Pagination = () => {
@@ -61,53 +67,75 @@ const Users = () => {
   return (
     <AdminLayout>
       <h2>Users</h2>
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <ErrorComponent message={error} />
-      ) : users ? (
-        <>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, key) => (
-                <tr key={key}>
-                  <td>
-                    <AvatarSmall src={user.image} />
-                    {user.name}
-                  </td>
-                  <td>{user.email}</td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        router.push(`user/${user._id}`);
-                        dispatch({
-                          type: GET_USER_RESET,
-                        });
-                      }}
-                    >
-                      View
-                    </button>
-                    <DeleteBtn>Delete</DeleteBtn>
-                  </td>
+
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search name or email"
+          aria-label="Example text with button addon"
+          aria-describedby="button-addon1"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+        />
+        <button
+          className="btn btn-outline-secondary"
+          type="button"
+          id="button-addon1"
+          onClick={handleSearch}
+        >
+          search
+        </button>
+      </div>
+      <Paper>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <ErrorComponent message={error} />
+        ) : users ? (
+          <>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>email</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      ) : (
-        "There was no data available to retrieve."
-      )}
-      <FlexBtnSB>
-        <button>Create User</button>
-        <Pagination />
-      </FlexBtnSB>
+              </thead>
+              <tbody>
+                {users.map((user, key) => (
+                  <tr key={key}>
+                    <td>
+                      <AvatarSmall src={user.image} />
+                      {user.name}
+                    </td>
+                    <td>{user.email}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          router.push(`user/${user._id}`);
+                          dispatch({
+                            type: GET_USER_RESET,
+                          });
+                        }}
+                      >
+                        View
+                      </button>
+                      <DeleteBtn>Delete</DeleteBtn>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          "There was no data available to retrieve."
+        )}
+        <FlexBtnSB>
+          <button>Create User</button>
+          <Pagination />
+        </FlexBtnSB>
+      </Paper>
     </AdminLayout>
   );
 };

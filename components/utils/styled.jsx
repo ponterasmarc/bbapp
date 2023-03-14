@@ -117,3 +117,7 @@ export const PageCountNav = styled.div`
     margin: 0;
   }
 `;
+
+export const Search = styled.div`
+  display: flex;
+`;

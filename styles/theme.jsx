@@ -8,8 +8,8 @@ export const lightTheme = {
     primaryTitle: "#448aff",
     secondaryTitle: "",
 
-    primaryText: "#121212",
-    secondaryText: "#2229",
+    primaryText: "#2c3e50",
+    secondaryText: "#34495ea9",
 
     primaryBtnBg: "",
     secondaryBtnBg: "",
@@ -25,6 +25,10 @@ export const lightTheme = {
     error: "#d32f2f",
     warning: "#f57c00",
     success: "#388e3c",
+
+    newIndorsed: "#2980b9",
+    ongoing: "#d35400",
+    complete: "#27ae60",
 
     placeholder: "#22222238",
 
@@ -43,8 +47,8 @@ export const darkTheme = {
     primary: "#2979ff",
     secondary: "",
 
-    primaryBg: "#222222",
-    secondaryBg: "#121212",
+    primaryBg: "#1D2B37",
+    secondaryBg: "#17212B",
 
     primaryTitle: "#82b1ff",
     secondaryTitle: "",
@@ -66,6 +70,11 @@ export const darkTheme = {
     error: "#d32f2f",
     warning: "#f57c00",
     success: "#388e3c",
+
+    newIndorsed: "#3498db",
+    ongoing: "#e67e22",
+    complete: "#2ecc71",
+
     btnPrim: "#2979ff",
 
     placeholder: "#ffffff38",

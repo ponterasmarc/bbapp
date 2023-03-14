@@ -6,23 +6,27 @@ const ThemeButton = styled.div`
   bottom: 0;
   right: 0;
   z-index: 99;
+  border: 1px solid ${({ theme }) => theme.colors.defaultBorder};
 
   button {
-    background-color: ${({ theme }) => theme.colors.bodyBg};
+    background-color: transparent;
     border-radius: 0;
-    color: ${({ theme }) => theme.colors.text};
+    border: 1px solid ${({ theme }) => theme.colors.defaultBorder};
     display: flex;
     align-items: center;
     font-size: 12px;
     padding: 5px 15px;
+    margin: 0;
 
     svg,
     span {
       display: block;
+      color: ${({ theme }) => theme.colors.secondaryText};
     }
     svg {
       font-size: 20px;
       margin-left: 5px;
+      color: ${({ theme }) => theme.colors.secondaryText};
     }
     :hover {
       cursor: pointer;
@@ -31,7 +35,9 @@ const ThemeButton = styled.div`
 
   button.active {
     background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.btnText};
+    svg {
+      color: #fff;
+    }
   }
 `;
 

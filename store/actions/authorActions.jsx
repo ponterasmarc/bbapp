@@ -14,29 +14,32 @@ import {
   DELETE_AUTHOR_FAIL,
 } from "../constants/authorConstans";
 
-export const getAuthors = (pageNo, size) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: GET_AUTHORS_REQUEST,
-    });
+export const getAuthors =
+  (pageNo, size, search) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: GET_AUTHORS_REQUEST,
+      });
 
-    const { data } = await axios.get(
-      `/api/authors?&pageNo=${pageNo}&size=${size}`
-    );
-    dispatch({
-      type: GET_AUTHORS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_AUTHORS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      console.log(search);
+
+      const { data } = await axios.get(
+        `/api/authors?&pageNo=${pageNo}&size=${size}&search=${search}`
+      );
+      dispatch({
+        type: GET_AUTHORS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_AUTHORS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getAuthor = (id) => async (dispatch) => {
   try {

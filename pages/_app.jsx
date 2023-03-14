@@ -16,20 +16,28 @@ export default function App({ Component, pageProps }) {
 
   const themeToggler = (value) => {
     if (value === "dark") {
+      localStorage.setItem("theme", "dark");
       setTheme("dark");
     } else {
       setTheme("light");
+      localStorage.setItem("theme", "light");
     }
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-      if (darkThemeMq.matches) {
-        setTheme("dark");
-      } else {
-        setTheme("light");
+    var theme = localStorage.getItem("theme");
+
+    if (!theme) {
+      if (typeof window !== "undefined") {
+        const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+        if (darkThemeMq.matches) {
+          setTheme("dark");
+        } else {
+          setTheme("light");
+        }
       }
+    } else {
+      setTheme(theme);
     }
   }, []);
 
@@ -47,14 +55,12 @@ export default function App({ Component, pageProps }) {
                 className={theme === "light" ? "active" : ""}
                 onClick={() => themeToggler("light")}
               >
-                <span>Light</span>
                 <LightModeIcon />
               </button>
               <button
                 className={theme === "dark" ? "active" : ""}
                 onClick={() => themeToggler("dark")}
               >
-                <span>Dark</span>
                 <DarkModeIcon />
               </button>
             </ThemeSwitch>

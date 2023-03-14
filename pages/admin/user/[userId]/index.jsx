@@ -36,6 +36,7 @@ const User = () => {
 
   return (
     <AdminLayout>
+      <h2>User details</h2>
       <UserView>
         {loading ? (
           <Loading />
